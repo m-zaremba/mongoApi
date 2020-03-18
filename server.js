@@ -1,11 +1,11 @@
 /* eslint-disable no-console */
-/* eslint-disable promise/catch-or-return */
 const express = require('express');
 
 const app = express();
 
 const mongoose = require('mongoose');
 const morgan = require('morgan');
+const expressValidator = require('express-validator');
 const dotenv = require('dotenv');
 
 dotenv.config();
@@ -25,6 +25,7 @@ mongoose.connection.on('error', (err) => {
 
 app.use(morgan('dev'));
 app.use(express.json());
+app.use(expressValidator());
 app.use('/', postRoutes);
 
 const port = process.env.PORT || 3001;
